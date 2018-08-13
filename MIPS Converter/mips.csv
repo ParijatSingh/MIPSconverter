@@ -1,0 +1,31 @@
+add,Add,R,0x00,0x20,R[rd] = R[rs] + R[rt],rd;rs;rt
+addi,Add Immediate,I,0x08,0x00,R[rt] = R[rs] + SignExtImm,rt;rs;imm
+addiu,Add Imm. Unsigned,I,0x09,0x00,R[rt] = R[rs] + SignExtImm,rt;rs;imm
+addu,Add Unsigned,R,0x00,0x21,R[rd] = R[rs] + R[rt],rd;rs;rt
+and,And,R,0x00,0x24,R[rd] = R[rs] & R[rt],rd;rs;rt
+andi,And Immediate,I,0x0c,0x00,R[rt] = R[rs] & ZeroExtImm,rt;rs;imm
+beq,Branch On Equal,I,0x04,0x00,if(R[rs]==R[rt])PC=PC+4+BranchAddr,rs;rt;imm
+bne,Branch On Not Equal,I,0x05,0x00,if(R[rs]!=R[rt])PC=PC+4+BranchAddr,rs;rt;imm
+j,Jump,J,0x02,0x00,PC=JumpAddr,addr
+jal,Jump And Link,J,0x03,0x00,R[31]=PC+8;PC=JumpAddr,addr
+jr,Jump Register,R,0x00,0x08,PC=R[rs],rs
+lbu,Load Byte Unsigned,I,0x24,0x00,R[rt]={24'b0 M[R[rs]+SignExtImm](7:0)},rt;imm;rs
+lhu,Load Halfword Unsigned,I,0x25,0x00,R[rt]={16'b0 M[R[rs]+SignExtImm](15:0)},rt;imm;rs
+ll,Load Linked,I,0x30,0x00,R[rt] = M[R[rs]+SignExtImm],rt;imm;rs
+lui,Load Upper Imm.,I,0x15,0x00,R[rt] = {imm 16’b0},rt;imm
+lw,Load Word,I,0x23,0x00,R[rt] = M[R[rs]+SignExtImm],rt;imm;rs
+nor,Nor,R,0x00,0x27,R[rd] = ~ (R[rs] | R[rt]),rd;rs;rt
+or,Or,R,0x00,0x25,R[rd] = R[rs] | R[rt],rd;rs;rt
+ori,Or Immediate,I,0x0d,0x00,R[rt] = R[rs] | ZeroExtImm,rt;rs;imm
+slt,Set Less Than,R,0x00,0x2a,R[rd] = (R[rs] < R[rt]) ? 1 : 0,rd;rs;rt
+slti,Set Less Than Imm.,I,0x0a,0x00,R[rt] = (R[rs] < SignExtImm)? 1 : 0 (2),rt;rs;imm
+sltiu,Set Less Than Imm.Unsigned,I,0x0b,0x00,R[rt] = (R[rs] < SignExtImm)? 1 : 0,rt;rs;imm
+sltu,Set Less Than Unsig. ,R,0x00,0x2b,R[rd] = (R[rs] < R[rt]) ? 1 : 0,rd;rs;rt
+sll,Shift Left Logical,R,0x00,0x00,R[rd] = R[rt] << shamt,rd;rt;shamt
+srl,Shift Right Logical,R,0x00,0x02,R[rd] = R[rt] >> shamt,rd;rt;shamt
+sb,Store Byte,I,0x28,0x00,M[R[rs]+SignExtImm](7:0) =R[rt](7:0),rs;imm;rt
+sc,Store Conditional,I,0x38,0x00,M[R[rs]+SignExtImm] = R[rt];R[rt] = (atomic) ? 1 : 0,rs;imm;rt
+sh,Store Halfword,I,0x29,0x00,M[R[rs]+SignExtImm](15:0) =R[rt](15:0),rs;imm;rt
+sw,Store Word,I,0x2b,0x00,M[R[rs]+SignExtImm] = R[rt],rs;imm;rt
+sub,Subtract,R,0x00,0x22,R[rd] = R[rs] - R[rt],rd;rs;rt
+subu,Subtract Unsigned,R,0x00,0x23,R[rd] = R[rs] - R[rt],rd;rs;rt
